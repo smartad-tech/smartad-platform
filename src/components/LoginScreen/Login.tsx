@@ -20,40 +20,52 @@ export const Login = () => {
 
   return (
     <Flex
-      mt={"30vh"}
-      p={"20px"}
-      bgColor={"gray.100"}
-      boxShadow={"xl"}
-      rounded={"xl"}
+      w={"100%"}
+      h={"100%"}
+      alignItems={"center"}
+      justifyContent={"center"}
+      textAlign="center"
+      fontSize="xl"
     >
-      <VStack>
-        <Logo maxH={"25vh"} />
-        <Heading mb={'20px'} size={"md"}> Login to SmartAd</Heading>
-        <HStack>
-          <PinInput
-            onChange={(input: string) => setPin(input)}
-            value={pin}
-            size={"lg"}
-            type="number"
-            placeholder=""
-            mask
-            autoFocus={false}
+      <Flex
+        mt={"30vh"}
+        p={"20px"}
+        bgColor={"gray.100"}
+        boxShadow={"xl"}
+        rounded={"xl"}
+      >
+        <VStack>
+          <Logo maxH={"25vh"} />
+          <Heading mb={"20px"} size={"md"}>
+            {" "}
+            Login to SmartAd
+          </Heading>
+          <HStack>
+            <PinInput
+              onChange={(input: string) => setPin(input)}
+              value={pin}
+              size={"lg"}
+              type="number"
+              placeholder=""
+              mask
+              autoFocus={false}
+            >
+              <PinInputField />
+              <PinInputField />
+              <PinInputField />
+              <PinInputField />
+            </PinInput>
+          </HStack>
+          <Button
+            mt={"20px"}
+            variant={"primary"}
+            onClick={onSubmit}
+            isLoading={isLoading}
           >
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-          </PinInput>
-        </HStack>
-        <Button
-          mt={"20px"}
-          variant={"primary"}
-          onClick={onSubmit}
-          isLoading={isLoading}
-        >
-          Submit
-        </Button>
-      </VStack>
+            Submit
+          </Button>
+        </VStack>
+      </Flex>
     </Flex>
   );
 };
