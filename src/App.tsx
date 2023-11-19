@@ -1,5 +1,4 @@
-import { ChakraProvider, Box, Flex } from "@chakra-ui/react";
-import { SmartPieChart } from "./components/SmartPieChart";
+import { ChakraProvider, Flex } from "@chakra-ui/react";
 import { Login } from "./components/LoginScreen/Login";
 import { theme } from "./theme";
 
