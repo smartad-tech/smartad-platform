@@ -9,13 +9,19 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Logo } from "./Logo";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [pin, setPin] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onSubmit = () => {
     setIsLoading(true);
+    if (pin === "1337") {
+      navigate("/dashboard", { replace: true });
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -48,7 +54,6 @@ export const Login = () => {
               type="number"
               placeholder=""
               mask
-              autoFocus={false}
             >
               <PinInputField />
               <PinInputField />
@@ -60,6 +65,7 @@ export const Login = () => {
             mt={"20px"}
             variant={"primary"}
             onClick={onSubmit}
+            formNoValidate={true}
             isLoading={isLoading}
           >
             Submit
