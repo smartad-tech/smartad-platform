@@ -1,5 +1,5 @@
-import { Flex, VStack } from "@chakra-ui/react";
-import { SmartPieChart } from "../SmartPieChart";
+import { Flex, HStack, VStack, Button } from "@chakra-ui/react";
+import { SmartPieChart } from "./SmartPieChart";
 
 export const Dashboard = () => {
   return (
@@ -12,13 +12,18 @@ export const Dashboard = () => {
       fontSize="xl"
     >
       <Flex
-        mt={"30vh"}
+        w={"100vh"}
+        mt={"1vh"}
+        h={"98vh"}
         p={"20px"}
         bgColor={"gray.100"}
         boxShadow={"xl"}
         rounded={"xl"}
       >
-        <VStack>
+        <VStack w={'100%'} h={'100%'}>
+          <HStack w={'100%'} h={'auto'} justifyContent={'right'}>
+            <Button variant={'secondary'}>Logout</Button>
+          </HStack>
           <SmartPieChart />
         </VStack>
       </Flex>
