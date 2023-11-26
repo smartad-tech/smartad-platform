@@ -24,5 +24,8 @@ export const theme: Record<string, any> = extendTheme({
       800: "#234E52",
       900: "#1D4044",
     },
+    bg : {
+      100: "#FAF8F1"
+    }
   },
 });

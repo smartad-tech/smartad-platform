@@ -1,7 +1,10 @@
-import { Flex, HStack, VStack, Button } from "@chakra-ui/react";
-import { SmartPieChart } from "./SmartPieChart";
+import { Flex, HStack, VStack, Button, Grid, GridItem } from "@chakra-ui/react";
+import { SegmentsPieChart } from "./SegmentsPieChart";
+import { DateViewsAreaChart } from "./DateViewsAreaChart";
+import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
+  const navigate = useNavigate();
   return (
     <Flex
       w={"100%"}
@@ -12,19 +15,24 @@ export const Dashboard = () => {
       fontSize="xl"
     >
       <Flex
-        w={"100vh"}
-        mt={"1vh"}
-        h={"98vh"}
+        w={"96vw"}
+        mt={"3vh"}
+        h={"94vh"}
         p={"20px"}
-        bgColor={"gray.100"}
-        boxShadow={"xl"}
+        bgColor={"bg.100"}
+        boxShadow={"md"}
         rounded={"xl"}
       >
-        <VStack w={'100%'} h={'100%'}>
-          <HStack w={'100%'} h={'auto'} justifyContent={'right'}>
-            <Button variant={'secondary'}>Logout</Button>
+        <VStack w={"100%"} h={"100%"}>
+          <HStack mb={"20px"} w={"100%"} h={"auto"} justifyContent={"right"}>
+            <Button onClick={() => navigate("/")} variant={"secondary"}>
+              Logout
+            </Button>
           </HStack>
-          <SmartPieChart />
+          <HStack w={"100%"} justifyContent={"left"}>
+            <SegmentsPieChart />
+            <DateViewsAreaChart />
+          </HStack>
         </VStack>
       </Flex>
     </Flex>

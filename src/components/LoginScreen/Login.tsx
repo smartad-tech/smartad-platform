@@ -34,7 +34,7 @@ export const Login = () => {
       fontSize="xl"
     >
       <Flex
-        mt={"30vh"}
+        mt={"25vh"}
         p={"20px"}
         bgColor={"gray.100"}
         boxShadow={"xl"}

@@ -1,7 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
 
-export const SmartPieChart = () => {
+export const SegmentsPieChart = () => {
   const data = [
     { name: "Senior Men", value: 400 },
     { name: "Senior Women", value: 300 },
@@ -10,12 +10,14 @@ export const SmartPieChart = () => {
     { name: "Young Men", value: 200 },
     { name: "Young Women", value: 200 },
   ];
+  
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
   return (
     <Flex
+      mr={'10px'}
       alignItems="center"
       direction="column"
-      textAlign="center"
+      
       border={"1px"}
       borderColor="gray.300"
       bg="white"
@@ -25,7 +27,7 @@ export const SmartPieChart = () => {
       boxShadow="xl"
       justifyContent="center"
     >
-      <Text mb={'3'}>Segment distribution</Text>
+      <Text mb={'10px'}>Segment distribution</Text>
       <PieChart width={300} height={300}>
         <Pie
           data={data}
