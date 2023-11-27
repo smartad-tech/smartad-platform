@@ -10,14 +10,13 @@ export const SegmentsPieChart = () => {
     { name: "Young Men", value: 200 },
     { name: "Young Women", value: 200 },
   ];
-  
+
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
   return (
     <Flex
-      mr={'10px'}
+      mr={"10px"}
       alignItems="center"
       direction="column"
-      
       border={"1px"}
       borderColor="gray.300"
       bg="white"
@@ -27,7 +26,7 @@ export const SegmentsPieChart = () => {
       boxShadow="xl"
       justifyContent="center"
     >
-      <Text mb={'10px'}>Segment distribution</Text>
+      <Text mb={"10px"}>Segment distribution</Text>
       <PieChart width={300} height={300}>
         <Pie
           data={data}
@@ -45,7 +44,7 @@ export const SegmentsPieChart = () => {
           ))}
         </Pie>
         <Tooltip />
-        <Legend wrapperStyle={{fontSize: '13px'}}/>
+        <Legend wrapperStyle={{ fontSize: "13px" }} />
       </PieChart>
     </Flex>
   );

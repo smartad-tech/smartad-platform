@@ -10,18 +10,33 @@ import {
 import { useState } from "react";
 import { Logo } from "./Logo";
 import { useNavigate } from "react-router-dom";
+import { loginToDashboard, LoginData } from "../../services/LoginService";
+import { setGlobalUserId } from "../../services/SmartAdStorage";
 
 export const Login = () => {
   const [pin, setPin] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
   const navigate = useNavigate();
+
+  const login = async (pin: string) => {
+    const userDataResult = await loginToDashboard(pin);
+    userDataResult.unwrap(
+      (loginData: LoginData) => {
+        setIsInvalid(false);
+        setGlobalUserId(loginData.userId);
+        navigate("/dashboard", { replace: true });
+      },
+      (error: Error) => {
+        setIsInvalid(true);
+      }
+    );
+    setIsLoading(false);
+  };
 
   const onSubmit = () => {
     setIsLoading(true);
-    if (pin === "1337") {
-      navigate("/dashboard", { replace: true });
-    }
-    setIsLoading(false);
+    login(pin);
   };
 
   return (
@@ -54,6 +69,7 @@ export const Login = () => {
               type="number"
               placeholder=""
               mask
+              isInvalid={isInvalid}
             >
               <PinInputField />
               <PinInputField />
@@ -65,7 +81,6 @@ export const Login = () => {
             mt={"20px"}
             variant={"primary"}
             onClick={onSubmit}
-            formNoValidate={true}
             isLoading={isLoading}
           >
             Submit

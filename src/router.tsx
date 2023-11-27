@@ -18,5 +18,5 @@ export const router = createBrowserRouter(
       element: <Dashboard />,
     },
   ],
-  { basename: "" }
+  { basename: "" },
 );

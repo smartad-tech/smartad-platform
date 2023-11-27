@@ -1,30 +1,35 @@
-import { darken, mode, type StyleFunctionProps, transparentize } from '@chakra-ui/theme-tools'
+import {
+  darken,
+  mode,
+  type StyleFunctionProps,
+  transparentize,
+} from "@chakra-ui/theme-tools";
 
 const baseStyle = {
-  textTransform: 'normal',
-  fontWeight: 'medium',
-  borderRadius: '2xl',
-}
+  textTransform: "normal",
+  fontWeight: "medium",
+  borderRadius: "2xl",
+};
 
 const sizes = {
   lg: {
-    fontSize: 'sm',
-    px: '3',
-    py: '1',
+    fontSize: "sm",
+    px: "3",
+    py: "1",
   },
   md: {
-    fontSize: 'sm',
-    lineHeight: '1.25rem',
-    px: '2.5',
-    py: '0.5',
+    fontSize: "sm",
+    lineHeight: "1.25rem",
+    px: "2.5",
+    py: "0.5",
   },
   sm: {
-    fontSize: 'xs',
-    lineHeight: '1.5',
-    px: '2',
-    py: '0.5',
+    fontSize: "xs",
+    lineHeight: "1.5",
+    px: "2",
+    py: "0.5",
   },
-}
+};
 
 const variants = {
   subtle: (props: StyleFunctionProps) => ({
@@ -33,12 +38,12 @@ const variants = {
       transparentize(`${props.colorScheme}.200`, 0.16)(props.theme),
     )(props),
   }),
-}
+};
 
 const defaultProps = {
-  size: 'md',
-  variant: 'subtle',
-}
+  size: "md",
+  variant: "subtle",
+};
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -46,4 +51,4 @@ export default {
   defaultProps,
   variants,
   sizes,
-}
+};
