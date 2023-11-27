@@ -11,7 +11,7 @@ import { useState } from "react";
 import { Logo } from "./Logo";
 import { useNavigate } from "react-router-dom";
 import { loginToDashboard, LoginData } from "../../services/LoginService";
-import { setGlobalUserId } from "../../services/SmartAdStorage";
+import { setGlobalAdId, setGlobalUserId } from "../../services/SmartAdStorage";
 
 export const Login = () => {
   const [pin, setPin] = useState("");
@@ -25,6 +25,7 @@ export const Login = () => {
       (loginData: LoginData) => {
         setIsInvalid(false);
         setGlobalUserId(loginData.userId);
+        setGlobalAdId(loginData.advertisingId);
         navigate("/dashboard", { replace: true });
       },
       (error: Error) => {

@@ -22,5 +22,10 @@ export const getGlobalAdId = (): Result<string> => {
   if (adId == null) {
     return Result.err(new Error());
   }
-  return Result.ok(adId)
+  return Result.ok(adId);
+};
+
+export const clearGlobalStorage = () => {
+  localStorage.removeItem("advertisingId");
+  localStorage.removeItem("userId");
 };
