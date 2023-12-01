@@ -8,33 +8,54 @@ import {
   getGlobalAdId,
   getGlobalUserId,
 } from "../../services/SmartAdStorage";
+import {
+  StatisticsData,
+  fetchStatistics,
+} from "../../services/DashboardService";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [statisticsData, setStatisticsData] = useState<
+    StatisticsData | undefined
+  >(undefined);
 
-  useEffect(() => {
+  const loadStats = async () => {
     const userId = getGlobalUserId().unwrap(
-      (userId) => {
-        return userId;
+      (userIdVal) => {
+        return userIdVal;
       },
-      (error) => {
+      () => {
         navigate("/", { replace: true });
         return "";
       }
     );
 
     const adId = getGlobalAdId().unwrap(
-      (adId) => {
-        return adId;
+      (adIdVal) => {
+        return adIdVal;
       },
-      (error) => {
+      () => {
         navigate("/", { replace: true });
         return "";
       }
     );
-    setIsLoaded(true);
-  }, [navigate]);
+
+    (await fetchStatistics(adId)).unwrap(
+      (stats) => {
+        setStatisticsData(stats);
+        setIsLoaded(true);
+      },
+      () => {
+        console.log("ERROR: Unable to fetch statistics");
+        setIsLoaded(false);
+      }
+    );
+  };
+
+  useEffect(() => {
+    loadStats();
+  }, []);
 
   return !isLoaded ? (
     <></>
@@ -69,7 +90,7 @@ export const Dashboard = () => {
             </Button>
           </HStack>
           <HStack w={"100%"} justifyContent={"left"}>
-            <SegmentsPieChart />
+            <SegmentsPieChart data={statisticsData!.totalViewsPerCategory} />
             <DateViewsAreaChart />
           </HStack>
         </VStack>

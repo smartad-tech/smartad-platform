@@ -1,15 +1,23 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
+import { CategoryViews } from "../../services/DashboardService";
 
-export const SegmentsPieChart = () => {
-  const data = [
-    { name: "Senior Men", value: 400 },
-    { name: "Senior Women", value: 300 },
-    { name: "Adult Women", value: 300 },
-    { name: "Adult Men", value: 200 },
-    { name: "Young Men", value: 200 },
-    { name: "Young Women", value: 200 },
-  ];
+interface SegmentsPieChartProps {
+  data: CategoryViews[];
+}
+
+interface SmartAdPieChartData {
+  name: string;
+  value: number;
+}
+
+export const SegmentsPieChart = ({ data }: SegmentsPieChartProps) => {
+  const formattedData: SmartAdPieChartData[] = data.map((value) => {
+    return {
+      name: value.categoryName,
+      value: value.views,
+    };
+  });
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
   return (
@@ -29,7 +37,7 @@ export const SegmentsPieChart = () => {
       <Text mb={"10px"}>Segment distribution</Text>
       <PieChart width={300} height={300}>
         <Pie
-          data={data}
+          data={formattedData}
           cx={150}
           cy={100}
           innerRadius={60}
