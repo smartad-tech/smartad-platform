@@ -19,7 +19,7 @@ export const SegmentsPieChart = ({ data }: SegmentsPieChartProps) => {
     };
   });
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const COLORS = ["#0088FE", "#5800c4", "#FFBB28", "#FF8042"];
   return (
     <Flex
       mr={"10px"}

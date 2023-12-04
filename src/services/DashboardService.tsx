@@ -13,7 +13,6 @@ interface DailyView {
 
 export interface StatisticsData {
   advertisingId: string;
-  totalViews: string;
   totalViewsPerCategory: CategoryViews[];
   dailyViews: DailyView[];
 }
