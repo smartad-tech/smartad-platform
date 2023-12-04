@@ -8,25 +8,23 @@ export interface CategoryViews {
 
 interface DailyView {
   date: string;
-//   viewsPerCategory: CategoryViews[];
 }
 
-export interface StatisticsData {
+export interface PieChartStats {
   advertisingId: string;
   totalViewsPerCategory: CategoryViews[];
-  dailyViews: DailyView[];
 }
 
-export const fetchStatistics = async (
+export const fetchPieChartStats = async (
   adId: string
-): Promise<Result<StatisticsData>> => {
+): Promise<Result<PieChartStats>> => {
   return axios
     .get(
-      `https://16utwkbybk.execute-api.eu-central-1.amazonaws.com/prod/ad/${adId}/views`
+      `https://16utwkbybk.execute-api.eu-central-1.amazonaws.com/prod/ad/${adId}/segment-views`
     )
     .then((res) => {
       if (res.status === 200) {
-        return Result.ok(res.data as StatisticsData);
+        return Result.ok(res.data as PieChartStats);
       }
       console.log(
         `Error requesting advertising statistics. Status code: ${res.status}`

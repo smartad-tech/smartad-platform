@@ -1,23 +1,40 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
-import { CategoryViews } from "../../services/DashboardService";
+import { CategoryViews, fetchPieChartStats } from "../../services/DashboardService";
+import { useEffect, useState } from "react";
 
-interface SegmentsPieChartProps {
-  data: CategoryViews[];
-}
 
-interface SmartAdPieChartData {
+interface PieChartData {
   name: string;
   value: number;
 }
 
-export const SegmentsPieChart = ({ data }: SegmentsPieChartProps) => {
-  const formattedData: SmartAdPieChartData[] = data.map((value) => {
-    return {
-      name: value.categoryName,
-      value: value.views,
-    };
-  });
+interface SegmentsPieChartProps {
+  advertisingId: string;
+}
+
+export const SegmentsPieChart = ({ advertisingId }: SegmentsPieChartProps) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [pieChartData, setPieChartData] = useState<PieChartData[]>([]);
+
+  const loadData = async () => {
+    const result = await fetchPieChartStats(advertisingId);
+    result.unwrap((data) => {
+      setPieChartData(data.totalViewsPerCategory.map((value) => {
+        return {
+          name: value.categoryName,
+          value: value.views
+        };
+      }));
+    }, () => {
+      console.log("Error happened during fetching pie chart stats");
+    });
+  };
+
+  useEffect(() => {
+    void loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const COLORS = ["#0088FE", "#5800c4", "#FFBB28", "#FF8042"];
   return (
@@ -37,7 +54,7 @@ export const SegmentsPieChart = ({ data }: SegmentsPieChartProps) => {
       <Text mb={"10px"}>Segment distribution</Text>
       <PieChart width={300} height={300}>
         <Pie
-          data={formattedData}
+          data={pieChartData}
           cx={150}
           cy={100}
           innerRadius={60}
@@ -47,12 +64,12 @@ export const SegmentsPieChart = ({ data }: SegmentsPieChartProps) => {
           dataKey="value"
           label
         >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          {pieChartData.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
           ))}
         </Pie>
-        <Tooltip />
-        <Legend wrapperStyle={{ fontSize: "13px" }} />
+        <Tooltip/>
+        <Legend wrapperStyle={{ fontSize: "13px" }}/>
       </PieChart>
     </Flex>
   );

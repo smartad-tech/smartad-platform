@@ -9,15 +9,15 @@ import {
   getGlobalUserId,
 } from "../../services/SmartAdStorage";
 import {
-  StatisticsData,
-  fetchStatistics,
+  PieChartStats,
+  fetchPieChartStats,
 } from "../../services/DashboardService";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
   const [statisticsData, setStatisticsData] = useState<
-    StatisticsData | undefined
+    PieChartStats | undefined
   >(undefined);
 
   const loadStats = async () => {
@@ -41,7 +41,7 @@ export const Dashboard = () => {
       }
     );
 
-    (await fetchStatistics(adId)).unwrap(
+    (await fetchPieChartStats(adId)).unwrap(
       (stats) => {
         setStatisticsData(stats);
         setIsLoaded(true);
@@ -90,8 +90,8 @@ export const Dashboard = () => {
             </Button>
           </HStack>
           <HStack w={"100%"} justifyContent={"left"}>
-            <SegmentsPieChart data={statisticsData!.totalViewsPerCategory} />
-            <DateViewsAreaChart />
+            <SegmentsPieChart advertisingId={"123"}/>
+            <DateViewsAreaChart/>
           </HStack>
         </VStack>
       </Flex>
