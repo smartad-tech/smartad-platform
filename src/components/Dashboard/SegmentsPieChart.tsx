@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
-import { CategoryViews, fetchPieChartStats } from "../../services/DashboardService";
+import { fetchPieChartStats } from "../../services/DashboardService";
 import { useEffect, useState } from "react";
 
 
@@ -33,7 +33,6 @@ export const SegmentsPieChart = ({ advertisingId }: SegmentsPieChartProps) => {
 
   useEffect(() => {
     void loadData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const COLORS = ["#0088FE", "#5800c4", "#FFBB28", "#FF8042"];
@@ -56,20 +55,20 @@ export const SegmentsPieChart = ({ advertisingId }: SegmentsPieChartProps) => {
         <Pie
           data={pieChartData}
           cx={150}
-          cy={100}
+          cy={125}
           innerRadius={60}
           outerRadius={80}
           fill="#8884d8"
           paddingAngle={5}
           dataKey="value"
-          label
+          // label
         >
           {pieChartData.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
           ))}
         </Pie>
         <Tooltip/>
-        <Legend wrapperStyle={{ fontSize: "13px" }}/>
+        <Legend wrapperStyle={{ fontSize: "12px" }}/>
       </PieChart>
     </Flex>
   );

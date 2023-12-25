@@ -90,8 +90,8 @@ export const Dashboard = () => {
             </Button>
           </HStack>
           <HStack w={"100%"} justifyContent={"left"}>
-            <SegmentsPieChart advertisingId={"123"}/>
-            <DateViewsAreaChart/>
+            <SegmentsPieChart advertisingId={"123"} />
+            <DateViewsAreaChart adId="123" />
           </HStack>
         </VStack>
       </Flex>
