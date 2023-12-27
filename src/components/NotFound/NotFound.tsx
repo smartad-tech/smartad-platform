@@ -24,7 +24,7 @@ export const NotFound = () => {
             Page is not found
           </Heading>
           <Text>
-            It looks like the page you are trying to access doesn't exist.{" "}
+            It looks like the page you are trying to access doesn&apos;t exist.{" "}
             <Text fontSize={"5xl"}>
               {String.fromCodePoint(Number("0x1F937"))}
             </Text>

@@ -32,7 +32,7 @@ export const fetchPieChartStats = async (
       return Result.err(new Error());
     })
     .catch((err) => {
-      return Result.err(new Error());
+      return Result.err(err);
     });
 };
 

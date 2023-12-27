@@ -1,24 +1,16 @@
-import { Flex, HStack, VStack, Button } from "@chakra-ui/react";
+import { Flex, HStack, VStack } from "@chakra-ui/react";
 import { SegmentsPieChart } from "./SegmentsPieChart";
 import { DateViewsAreaChart } from "./DateViewsAreaChart";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
-  clearGlobalStorage,
   getGlobalAdId,
   getGlobalUserId,
 } from "../../services/SmartAdStorage";
-import {
-  PieChartStats,
-  fetchPieChartStats,
-} from "../../services/DashboardService";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [statisticsData, setStatisticsData] = useState<
-    PieChartStats | undefined
-  >(undefined);
+  const [isLoaded, setIsLoaded] = useState(true);
 
   const loadStats = async () => {
     const userId = getGlobalUserId().unwrap(
@@ -40,17 +32,6 @@ export const Dashboard = () => {
         return "";
       }
     );
-
-    (await fetchPieChartStats(adId)).unwrap(
-      (stats) => {
-        setStatisticsData(stats);
-        setIsLoaded(true);
-      },
-      () => {
-        console.log("ERROR: Unable to fetch statistics");
-        setIsLoaded(false);
-      }
-    );
   };
 
   useEffect(() => {
@@ -69,26 +50,14 @@ export const Dashboard = () => {
       fontSize="xl"
     >
       <Flex
-        w={"96vw"}
-        mt={"3vh"}
-        h={"94vh"}
+        w={"98vw"}
+        h={"93vh"}
         p={"20px"}
         bgColor={"bg.100"}
         boxShadow={"md"}
         rounded={"xl"}
       >
         <VStack w={"100%"} h={"100%"}>
-          <HStack mb={"20px"} w={"100%"} h={"auto"} justifyContent={"right"}>
-            <Button
-              onClick={() => {
-                clearGlobalStorage();
-                navigate("/");
-              }}
-              variant={"secondary"}
-            >
-              Logout
-            </Button>
-          </HStack>
           <HStack w={"100%"} justifyContent={"left"}>
             <SegmentsPieChart advertisingId={"123"} />
             <DateViewsAreaChart adId="123" />

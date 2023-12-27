@@ -15,13 +15,12 @@ const baseStyle = (props: StyleFunctionProps) => ({
   _checked: {
     borderColor: mode("brand.500", "brand.200")(props),
     boxShadow: mode(
-      `0px 0px 0px 1px ${transparentize(`brand.500`, 1.0)(props.theme)}`,
-      `0px 0px 0px 1px ${transparentize(`brand.200`, 1.0)(props.theme)}`,
+      `0px 0px 0px 1px ${transparentize("brand.500", 1.0)(props.theme)}`,
+      `0px 0px 0px 1px ${transparentize("brand.200", 1.0)(props.theme)}`,
     )(props),
   },
 });
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   baseStyle,
 };

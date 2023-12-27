@@ -7,6 +7,7 @@ const config = {
   useSystemColorModel: true,
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const theme: Record<string, any> = extendTheme({
   ...foundations,
   components: { ...components },
@@ -26,6 +27,7 @@ export const theme: Record<string, any> = extendTheme({
     },
     bg: {
       100: "#FAF8F1",
+      200: "#ced3c9"
     },
   },
 });

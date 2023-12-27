@@ -28,7 +28,7 @@ export const Login = () => {
         setGlobalAdId(loginData.advertisingId);
         navigate("/dashboard", { replace: true });
       },
-      (error: Error) => {
+      () => {
         setIsInvalid(true);
       }
     );

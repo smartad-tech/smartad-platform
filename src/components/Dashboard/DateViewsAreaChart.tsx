@@ -59,17 +59,8 @@ interface DateViewsAreaChartProps {
   adId: string;
 }
 
-interface DataNumberFields {
-  [key: string]: number;
-}
-
-interface DataType {
-  name: string;
-}
-
-type Data = DataType & DataNumberFields;
-
 export const DateViewsAreaChart = ({ adId }: DateViewsAreaChartProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any[]>();
 
   const fetchData = async () => {

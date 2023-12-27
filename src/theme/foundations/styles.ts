@@ -1,6 +1,5 @@
 import { mode, type StyleFunctionProps } from "@chakra-ui/theme-tools";
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   global: (props: StyleFunctionProps) => ({
     body: {

@@ -45,7 +45,6 @@ const defaultProps = {
   variant: "subtle",
 };
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   baseStyle,
   defaultProps,

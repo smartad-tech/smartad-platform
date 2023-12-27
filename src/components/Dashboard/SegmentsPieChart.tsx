@@ -14,7 +14,6 @@ interface SegmentsPieChartProps {
 }
 
 export const SegmentsPieChart = ({ advertisingId }: SegmentsPieChartProps) => {
-  const [isLoading, setIsLoading] = useState(true);
   const [pieChartData, setPieChartData] = useState<PieChartData[]>([]);
 
   const loadData = async () => {
@@ -61,7 +60,6 @@ export const SegmentsPieChart = ({ advertisingId }: SegmentsPieChartProps) => {
           fill="#8884d8"
           paddingAngle={5}
           dataKey="value"
-          // label
         >
           {pieChartData.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>

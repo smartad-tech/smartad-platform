@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Login } from "./components/LoginScreen/Login";
 import { NotFound } from "./components/NotFound/NotFound";
-import { Dashboard } from "./components/Dashboard/Dashboard";
+import DashboardPage from "./components/Dashboard/DashboardPage";
 
 export const router = createBrowserRouter(
   [
@@ -15,7 +15,7 @@ export const router = createBrowserRouter(
     },
     {
       path: "/dashboard",
-      element: <Dashboard />,
+      element: <DashboardPage/>,
     },
   ],
   { basename: "" },

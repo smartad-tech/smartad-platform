@@ -21,6 +21,6 @@ export const loginToDashboard = async (
       return Result.ok(loginData);
     })
     .catch((error) => {
-      return Result.err(new Error());
+      return Result.err(error);
     });
 };
