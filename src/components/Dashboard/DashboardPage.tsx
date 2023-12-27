@@ -57,7 +57,7 @@ export default function DashboardPage() {
   return (
     <>
       <Box bg={"bg.100"} px={4} roundedBottom={"xl"}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <Flex h={"5vh"} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
